@@ -1,0 +1,69 @@
+feign:
+  circuitbreaker:
+    enabled: true
+  metrics:
+    enabled: true
+  okhttp:
+    enabled: true
+
+logbook:
+  exclude: /actuator/**
+
+logging:
+  level:
+    org:
+      zalando:
+        logbook: trace
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+server:
+  error:
+    include-message: never
+    include-exception: false
+    include-stacktrace: never
+    include-binding-errors: never
+  forward-headers-strategy: framework
+  port: 8999
+  shutdown: graceful
+
+spring:
+  application:
+    name: vehicles
+  autoconfigure:
+    exclude: 'org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration'
+  cloud:
+    config:
+      uri: http://localhost:8760
+    compatibility-verifier:
+      enabled: false
+  datasource:
+    hikari:
+      data-source-properties:
+        stringtype: unspecified
+    url: jdbc:postgresql://localhost:5432/vehicles
+    username: user
+    password: pass1234
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  lifecycle:
+    timeout-per-shutdown-phase: 60s
+  main:
+    banner-mode: off
+  profiles:
+    active: local
+    include: stream
