@@ -12,6 +12,7 @@ import org.springframework.beans.BeanUtils;
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "vehicles")
 public class VehicleEntity {
