@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class VehicleSearchUseCaseImpl implements VehicleSearchUseCase {
 
-  private final VehicleSearchGateway searchAllGateway;
+  private final VehicleSearchGateway searchGateway;
 
   @Override
   public Page<VehicleResponse> execute(VehicleFilterRequest filterRequest, Pageable pageable) {
-    return searchAllGateway.execute(filterRequest, pageable).map(VehicleResponse::mapper);
+    return searchGateway.execute(filterRequest, pageable).map(VehicleResponse::mapper);
   }
 }

@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public enum Status {
   AVAILABLE,
+  RESERVED,
   SOLD;
 
   public static Status compare(Status a, Status b) {
