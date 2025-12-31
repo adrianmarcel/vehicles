@@ -61,6 +61,40 @@ jacocoTestReport {
         html.required = true
         csv.required = false
     }
+
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect { dir ->
+            fileTree(dir: dir, exclude: [
+                    '**/core/config/**',
+                    '**/core/domain/**',
+                    '**/Application.java'
+            ])
+        }))
+    }
+}
+
+jacocoTestCoverageVerification {
+    dependsOn test
+    violationRules {
+        rule {
+            element = 'BUNDLE'
+            limit {
+                counter = 'INSTRUCTION'
+                value = 'COVEREDRATIO'
+                minimum = 0.80
+            }
+        }
+    }
+
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect { dir ->
+            fileTree(dir: dir, exclude: [
+                    '**/core/config/**',
+                    '**/core/domain/**',
+                    '**/Application.java'
+            ])
+        }))
+    }
 }
 
 springBoot {
